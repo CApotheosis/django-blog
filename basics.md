@@ -61,3 +61,6 @@ For more info: https://docs.djangoproject.com/en/3.2/ref/settings/
 ### Django generates the table names by combining the application name and the lowercase name of the model (blog_post), but you can also specify a custom database name for your model in the Meta class of the model using the db_table attribute.
 
 ### Django creates a primary key automatically for each model, but you can also override this by specifying primary_key=True in one of your model fields.
+
+
+### The Django object-relational mapper (ORM) is compatible with MySQL, PostgreSQL, SQLite, Oracle, and MariaDB. Django can work with multiple databases at a time, and you can program database routers to create custom routing schemes.
