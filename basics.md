@@ -1,4 +1,4 @@
-## Django commnds:
+### Django commnds:
 - django-admin startproject name: to create basic django app template
 - python manage.py migrate: to migrate created models into db. Each data model is mapped to a database table.
 - python manage.py runserver: strats development server
@@ -7,8 +7,9 @@
 - python manage.py makemigrations blog: applies migration (updates db according to models state)
 - python manage.py sqlmigrate blog 0001: sqlmigrate commands takes migration names and returns SQL without executing it.
 - python manage.py migrate: applies existing migrations
+- python manage.py createsuperuser: creates new django user
 
-## Created app folder structure:
+### Created app folder structure:
 - manage.py: This is a command-line utility used to interact with your project. It is a thin wrapper around the django-admin.py tool.
 - mysite/: This is your project directory, which consists of the following files:
 - __init__.py: An empty file that tells Python to treat the mysite directory as a Python module.
@@ -35,7 +36,7 @@ Django settings file by default:
 
 For more info: https://docs.djangoproject.com/en/3.2/ref/settings/
 
-## App structure:
+### App structure:
 - admin.py: This is where you register models to include them in the Django administration site—using this site is optional.
 - apps.py: This includes the main configuration of the blog application.
 - migrations: This directory will contain database migrations of your application. Migrations allow Django to track your model changes and synchronize the database accordingly.
@@ -43,7 +44,7 @@ For more info: https://docs.djangoproject.com/en/3.2/ref/settings/
 - tests.py: This is where you can add tests for your application.
 - views.py: The logic of your application goes here; each view receives an HTTP request, processes it, and returns a response.
 
-## Commands used to build model:
+### Commands used to build model:
 - title: This is the field for the post title. This field is CharField, which translates into a VARCHAR column in the SQL database.
 - slug: This is a field intended to be used in URLs. A slug is a short label that contains only letters, numbers, underscores, or hyphens. You will use the slug field to build beautiful, SEO-friendly URLs for your blog posts. You have added the unique_for_date parameter to this field so that you can build URLs for posts using their publish date and slug. Django will prevent multiple posts from having the same slug for a given date.
 - author: This field defines a many-to-one relationship, meaning that each post is written by a user, and a user can write any number of posts. For this field, Django will create a foreign key in the database using the primary key of the related model. In this case, you are relying on the User model of the Django authentication system. The on_delete parameter specifies the behavior to adopt when the referenced object is deleted. This is not specific to Django; it is an SQL standard. Using CASCADE, you specify that when the referenced user is deleted, the database will also delete all related blog posts. You can take a look at all the possible options at https://docs.djangoproject.com/en/3.0/ref/models/fields/#django.db.models.ForeignKey.on_delete. You specify the name of the reverse relationship, from User to Post, with the related_name attribute. This will allow you to access related objects easily. You will learn more about this later.
@@ -56,7 +57,7 @@ For more info: https://docs.djangoproject.com/en/3.2/ref/settings/
 
 ### The Meta class inside the model contains metadata. ordering set to "publish" which means to sort querying db in descending order with "-".
 
-## In order for Django to keep track of application, we need to add out app to the INSTALLED_APPS setting
+### In order for Django to keep track of application, we need to add out app to the INSTALLED_APPS setting
 
 ### Django generates the table names by combining the application name and the lowercase name of the model (blog_post), but you can also specify a custom database name for your model in the Meta class of the model using the db_table attribute.
 
