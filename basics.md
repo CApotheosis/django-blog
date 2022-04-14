@@ -56,12 +56,61 @@ For more info: https://docs.djangoproject.com/en/3.2/ref/settings/
 
 
 ### The Meta class inside the model contains metadata. ordering set to "publish" which means to sort querying db in descending order with "-".
-
-### In order for Django to keep track of application, we need to add out app to the INSTALLED_APPS setting
-
+```
+```
+## In order for Django to keep track of application, we need to add out app to the INSTALLED_APPS setting
+```
+```
 ### Django generates the table names by combining the application name and the lowercase name of the model (blog_post), but you can also specify a custom database name for your model in the Meta class of the model using the db_table attribute.
-
+```
+```
 ### Django creates a primary key automatically for each model, but you can also override this by specifying primary_key=True in one of your model fields.
-
-
+```
+```
 ### The Django object-relational mapper (ORM) is compatible with MySQL, PostgreSQL, SQLite, Oracle, and MariaDB. Django can work with multiple databases at a time, and you can program database routers to create custom routing schemes.
+```
+```
+### The Django ORM is based on QuerySets. A QuerySet is a collection of database queries to retrieve objects from your database. You can apply filters to QuerySets to narrow down the query results based on given parameters.
+
+## Creating objects
+- python manage.py shell: runs python shell 
+```
+Same as INSERT command in SQL statements
+>>> from django.contrib.auth.models import User
+>>> from blog.models import Post
+>>> user = User.objects.get(username='admin') # return user with given name or exception: DoesNotExist or MultipleObjectsReturned - in case of multiple returns
+>>> post = Post(title='Another post',
+...             slug='another-post',
+...             body='Post body.',
+...             author=user)
+>>> post.save()
+```
+Same as UPDATE command in SQL statements
+```
+>>> post.title = 'New title'
+>>> post.save()
+```
+## Default manager to access table data is __objects__ (returns Queryset). get returns only one instance, to access all table data use __all()__
+```
+all_posts = Post.objects.all()
+```
+## Filtering
+```
+# All posts within this year
+>>> Post.objects.filter(publish__year=2020)
+# Multiple filter params 
+>>> Post.objects.filter(publish__year=2020, author__username='admin')
+```
+# Note
+```
+Queries with field lookup methods are built using two underscores, for example, publish__year, but the same notation is also used for accessing fields of related models, such as author__username.
+```
+
+
+
+
+
+
+
+
+
