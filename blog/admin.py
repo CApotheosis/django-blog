@@ -8,6 +8,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'author', 'publish', 'status')
     list_filter = ('status', 'created', 'publish', 'author') # filter option on right side
     search_fields = ('title', 'body') # search options
+    # automatically sets slug name to title field value and data (if there are duplicates)
     prepopulated_fields = {'slug': ('title',)} # slug field now will be prepolulated from title
     raw_id_fields = ('author',) # easier search widget with ability to reference value by id
     date_hierarchy = 'publish' # date order by

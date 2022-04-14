@@ -8,6 +8,7 @@
 - python manage.py sqlmigrate blog 0001: sqlmigrate commands takes migration names and returns SQL without executing it.
 - python manage.py migrate: applies existing migrations
 - python manage.py createsuperuser: creates new django user
+- python manage.py shell
 
 ### Created app folder structure:
 - manage.py: This is a command-line utility used to interact with your project. It is a thin wrapper around the django-admin.py tool.
@@ -54,6 +55,7 @@ For more info: https://docs.djangoproject.com/en/3.2/ref/settings/
 - updated: This datetime indicates the last time the post was updated. Since you are using auto_now here, the date will be updated automatically when saving an object.
 - status: This field shows the status of a post. You use a choices parameter, so the value of this field can only be set to one of the given choices.
 
+### By adding `db_table` in Meta class we can define custom table name. 
 
 ### The Meta class inside the model contains metadata. ordering set to "publish" which means to sort querying db in descending order with "-".
 ```
